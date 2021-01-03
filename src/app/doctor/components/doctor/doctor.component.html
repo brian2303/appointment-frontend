@@ -1,0 +1,45 @@
+<table mat-table [dataSource]="doctors" class="mat-elevation-z2 doctor-table">
+  <ng-container matColumnDef="Nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let doctor"> {{doctor.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Tipo de identificación">
+    <th mat-header-cell *matHeaderCellDef> Tipo de identificación </th>
+    <td mat-cell *matCellDef="let doctor"> {{doctor.identificationType}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Identificación">
+    <th mat-header-cell *matHeaderCellDef> Identificación </th>
+    <td mat-cell *matCellDef="let doctor"> {{doctor.identification}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Experiencia">
+    <th mat-header-cell *matHeaderCellDef> Experiencia </th>
+    <td mat-cell *matCellDef="let doctor"> {{doctor.experience}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Especialidad">
+    <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+    <td mat-cell *matCellDef="let doctor"> {{doctor.speciality}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Inicio atención">
+    <th mat-header-cell *matHeaderCellDef> Inicio atención </th>
+    <td mat-cell *matCellDef="let doctor"> {{doctor.startSchedule}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Fin atención">
+    <th mat-header-cell *matHeaderCellDef> Fin atención </th>
+    <td mat-cell *matCellDef="let doctor"> {{doctor.endSchedule}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let doctor">
+      <a class="btn-edit" [routerLink]="['editar',doctor.idDoctor]" mat-raised-button>Editar</a>
+      <button mat-raised-button color="warn" (click)="deleteDoctor(doctor.idDoctor)">Eliminar</button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<a mat-raised-button color="primary" class="doctor-new"
+  routerLink="nuevo">
+  Nuevo registro
+</a>

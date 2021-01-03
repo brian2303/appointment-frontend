@@ -1,0 +1,50 @@
+
+<form [formGroup]="form" (ngSubmit)="createDoctor($event)" >
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Nuevo registro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="columns">
+        <mat-form-field class="column is-half">
+          <input placeholder="Nombre" formControlName="name" matInput type="text" >
+        </mat-form-field>
+        <mat-form-field class="column is-half">
+          <input placeholder="Tarjeta profesional" formControlName="professionalCard" matInput type="text" >
+        </mat-form-field>
+      </div>
+      <div class="columns">
+        <mat-form-field class="column is-half">
+          <mat-label>Tipo de identificación</mat-label>
+          <mat-select formControlName="identificationType">
+            <mat-option value="CC">Cedula ciudadania</mat-option>
+            <mat-option value="CE">Cedula Extranjeria</mat-option>
+            <mat-option value="TI">Tarjeta identidad</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="column is-half">
+          <input placeholder="Identificación" formControlName="identification" matInput type="text" >
+        </mat-form-field>
+      </div>
+      <div class="columns">
+        <mat-form-field class="column is-half">
+          <input placeholder="Experiencia" formControlName="experience" matInput type="text" >
+        </mat-form-field>
+        <mat-form-field class="column is-half">
+          <input placeholder="Especialidad" formControlName="speciality" matInput type="text" >
+        </mat-form-field>
+      </div>
+      <div class="columns">
+        <mat-form-field class="column is-half">
+          <input placeholder="Inicio atención" formControlName="startSchedule" matInput type="text" >
+        </mat-form-field>
+        <mat-form-field class="column is-half">
+          <input placeholder="Fin atención" formControlName="endSchedule" matInput type="text" >
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
