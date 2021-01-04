@@ -1,0 +1,48 @@
+<form [formGroup]="form" (ngSubmit)="createAppointment($event)" >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Nuevo registro</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="columns">
+            <mat-form-field class="column is-half" appearance="fill">
+                <mat-label>Fecha cita</mat-label>
+                <input formControlName="appointmentDate" (ngModelChange)="getScheduleAvailableByDoctor()"
+                (ngModelChange)="getQuantityAppointmentsByPatient()" matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="column is-half">
+                <mat-label>Seleccione el doctor</mat-label>
+                <mat-select [disabled]="disableFields" formControlName="idDoctor" (ngModelChange)="getScheduleAvailableByDoctor()">
+                  <mat-option *ngFor="let doctor of doctors" [value]="doctor.idDoctor">
+                    {{doctor.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="colums">
+          <mat-form-field appearance="fill" class="column is-half">
+            <mat-label>Seleccione el horario</mat-label>
+            <mat-select formControlName="appointmentHour">
+              <mat-option *ngFor="let hour of scheduleAvailableDoctor" [value]="hour">
+                {{hour}}:00
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="column is-half">
+            <mat-label>Seleccione el paciente</mat-label>
+            <mat-select (ngModelChange)="getQuantityAppointmentsByPatient()" [disabled]="disableFields" formControlName="idPatient">
+              <mat-option *ngFor="let patient of patients" [value]="patient.idPatient">
+                {{patient.name}} {{ patient.lastname }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-error *ngIf="quantityAppointmentByPatient >=2 ">Este paciente tiene más de dos citas asignadas para esta fecha, por favor seleccione otra</mat-error>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [disabled]="form.invalid || disableSubmit" mat-raised-button type="submit" color="primary">Guardar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

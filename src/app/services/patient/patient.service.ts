@@ -23,10 +23,10 @@ export class PatientService {
   }
 
   createPatient(patient:IPatient){
-    return this.http.post('http://localhost:8080/api/patients',patient);
+    return this.http.post<IPatient>('http://localhost:8080/api/patients',patient);
   }
 
   updatePatient(id:number,patient:IPatient){
-    return this.http.put(`http://localhost:8080/api/patients/${id}`,patient);
+    return this.http.put<IPatient>(`http://localhost:8080/api/patients/${id}`,patient);
   }
 }

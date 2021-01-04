@@ -3,6 +3,7 @@ import { PatientService } from '../../../services/patient/patient.service';
 import { Router,ActivatedRoute,Params } from  '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-patient-edit',
@@ -18,10 +19,19 @@ export class PatientEditComponent implements OnInit {
     private router:Router,
     private formBuilder:FormBuilder,
     private patientService:PatientService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private _snackBar:MatSnackBar
   ) { 
     this.form = this.formBuilder.group({});
     this.buildForm();
+  }
+
+  openSnackBar(message:string,end:string){
+    this._snackBar.open(message,end,{
+      duration:5000,
+      horizontalPosition : 'right',
+      verticalPosition:'top'
+    })
   }
 
   ngOnInit(): void {
@@ -48,7 +58,8 @@ export class PatientEditComponent implements OnInit {
       let newDate: moment.Moment = moment.utc(this.form.value.dateOfBirth).local();
       this.form.value.dateOfBirth = newDate.format("YYYY-MM-DD")
       this.patientService.updatePatient(this.id,this.form.value)
-        .subscribe(() =>{
+        .subscribe((res) =>{
+          this.openSnackBar(`paciente ${res.name} actualizado`,'OK!')
           this.router.navigate(['./pacientes']);
         })
     }

@@ -10,6 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [],
@@ -24,7 +26,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatTableModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSnackBarModule,
+    
   ],
   exports:[
     MatToolbarModule,
@@ -36,7 +40,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatTableModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

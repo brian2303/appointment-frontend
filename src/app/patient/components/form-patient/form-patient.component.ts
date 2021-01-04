@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { PatientService } from '../../../services/patient/patient.service';
 import { Router } from  '@angular/router';
 import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form-patient',
@@ -16,13 +17,22 @@ export class FormPatientComponent implements OnInit {
   constructor(
     private router:Router,
     private formBuilder:FormBuilder,
-    private patientService:PatientService
+    private patientService:PatientService,
+    private _snackBar:MatSnackBar
   ) { 
     this.form = this.formBuilder.group({});
     this.buildForm();
   }
 
   ngOnInit(): void {
+  }
+  
+  openSnackBar(message:string,end:string){
+    this._snackBar.open(message,end,{
+      duration:5000,
+      horizontalPosition : 'right',
+      verticalPosition:'top'
+    })
   }
 
   createPatient(event:Event){
@@ -32,6 +42,7 @@ export class FormPatientComponent implements OnInit {
       this.form.value.dateOfBirth = newDate.format("YYYY-MM-DD")
       this.patientService.createPatient(this.form.value)
         .subscribe(responsePatient =>{
+          this.openSnackBar(`Paciente ${responsePatient.name} creado exitosamente`,'OK!')
           this.router.navigate(['./pacientes']);
         })
     }

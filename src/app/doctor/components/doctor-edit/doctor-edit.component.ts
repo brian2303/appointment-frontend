@@ -2,6 +2,7 @@ import { Component, OnInit,OnChanges,SimpleChanges } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { DoctorService } from '../../../services/doctor/doctor.service';
 import { Router,ActivatedRoute,Params } from  '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-doctor-edit',
@@ -16,7 +17,8 @@ export class DoctorEditComponent implements OnInit {
       private doctorService:DoctorService,
       private formBuilder:FormBuilder,
       private router:Router,
-      private activatedRoute:ActivatedRoute
+      private activatedRoute:ActivatedRoute,
+      private _snackBar:MatSnackBar
   ){
     this.form = this.formBuilder.group({}) ;
     this.buildForm();
@@ -41,6 +43,14 @@ export class DoctorEditComponent implements OnInit {
     })
   }
 
+  openSnackBar(message:string,end:string){
+    this._snackBar.open(message,end,{
+      duration:5000,
+      horizontalPosition : 'right',
+      verticalPosition:'top'
+    })
+  }
+
   private buildForm(){
     this.form = this.formBuilder.group({
       name:['',[Validators.required]],
@@ -60,6 +70,7 @@ export class DoctorEditComponent implements OnInit {
     if(this.form.valid){
       this.doctorService.updateDoctor(this.id,doctor)
         .subscribe(responseDoctor =>{
+          this.openSnackBar(`Doctor actualizado exitosamente`,'OK!')
           this.router.navigate(['./doctores']);
         })
     }
