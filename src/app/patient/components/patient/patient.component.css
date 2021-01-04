@@ -1,3 +1,15 @@
-.btn-style {
-  margin-top: 10px;
+.patient-table {
+  width: 96%;
+  margin: 2%;
+}
+
+.patient-new {
+  width: 15%;
+  margin-left: 2%;
+}
+
+.btn-edit {
+  margin-right: 5px;
+  background-color: #ec9835;
+  color: white;
 }

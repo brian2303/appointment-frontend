@@ -33,7 +33,6 @@ export class DoctorComponent implements OnInit {
     this.doctorService.getAllDoctors()
       .subscribe(doctors =>{
         this.doctors = doctors;
-        console.log(this.doctors)
       })
   }
 

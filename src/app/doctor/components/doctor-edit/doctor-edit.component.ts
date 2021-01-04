@@ -2,8 +2,6 @@ import { Component, OnInit,OnChanges,SimpleChanges } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { DoctorService } from '../../../services/doctor/doctor.service';
 import { Router,ActivatedRoute,Params } from  '@angular/router';
-import { ThisReceiver } from '@angular/compiler';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-doctor-edit',

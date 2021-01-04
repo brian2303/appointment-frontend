@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="updatePatient($event)" >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Nuevo registro</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="columns">
+          <mat-form-field class="column is-half">
+            <input placeholder="Nombre" formControlName="name" matInput type="text" >
+          </mat-form-field>
+          <mat-form-field class="column is-half">
+            <input placeholder="Apellidos" formControlName="lastname" matInput type="text" >
+          </mat-form-field>
+        </div>
+        <div class="columns">
+          <mat-form-field class="column is-half">
+            <mat-label>Tipo de identificación</mat-label>
+            <mat-select formControlName="identificationType">
+              <mat-option value="CC">Cedula ciudadania</mat-option>
+              <mat-option value="CE">Cedula Extranjeria</mat-option>
+              <mat-option value="TI">Tarjeta identidad</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="column is-half">
+            <input placeholder="Identificación" formControlName="identification" matInput type="text" >
+          </mat-form-field>
+        </div>
+        <div class="columns">
+            <mat-form-field appearance="fill" class="column is-half">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input formControlName="dateOfBirth"  matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="column is-half">
+                <input placeholder="Eps" formControlName="affiliation" matInput type="text" >
+            </mat-form-field>
+        </div>
+        <div class="columns">
+          <mat-form-field class="column is-half">
+            <textarea rows="5" formControlName="medicalHistory" matInput placeholder="Historia clinica..."></textarea>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" color="primary">Guardar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
